@@ -1,8 +1,7 @@
 import pygame
-import time
-import random
-
-SCREEN_WIDTH, SCREEN_HEIGHT = 900 , 900
+# from classes.square import Square
+from classes.game import Game
+SCREEN_WIDTH, SCREEN_HEIGHT = 900, 900
 
 # set screen width/height
 WINDOW = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -12,15 +11,17 @@ pygame.display.set_caption("Travis' TicTacToe")
 # background color && grid
 color = (255, 255, 255)
 
-
+# left top width height
 lines = [pygame.Rect(300, 0, 10, 920),
          pygame.Rect(600, 0, 10, 920),
          pygame.Rect(0, 300, 920, 10),
          pygame.Rect(0, 600, 920, 10)]
+
+
 WINDOW.fill(color)
 for line in lines:
     pygame.draw.rect(WINDOW, (0, 0, 0), line)
-# Drawing Rectangle
+# trigger render
 pygame.display.flip()
 
 
@@ -31,8 +32,13 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
                 break
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_position = event.pos
+                print(mouse_position)
+                        
     pygame.quit()
 
 
 if __name__ == "__main__":
+    game = Game(WINDOW)
     main()
