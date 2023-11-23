@@ -28,17 +28,24 @@ pygame.display.flip()
 def main():
     run = True
     while run:
+        game = Game(WINDOW)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
                 break
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_position = event.pos
-                print(mouse_position)
+                game.take_turn(mouse_position)
+                game_over = game.check_winner()
+                if game_over:
+                    print(game.winner)
+                else:
+                    game.change_turn()
+
+                
                         
     pygame.quit()
 
 
 if __name__ == "__main__":
-    game = Game(WINDOW)
     main()
